@@ -1,0 +1,21 @@
+{
+    "builders": [
+        {
+            "type": "amazon-ebs",
+            "region": "eu-central-1",
+            "source_ami": "ami-fa2df395",
+            "instance_type": "t2.micro",
+            "ssh_username": "centos",
+            "ami_name": "packer-centos {{timestamp}}"
+        }
+    ],
+    "provisioners": [
+        {
+            "type": "shell",
+            "execute_command": "echo 'centos' | sudo -S env {{ .Vars }} {{ .Path }}",
+            "scripts": [
+                "script1.sh"
+            ]
+        }
+    ]
+}
